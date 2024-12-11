@@ -26,6 +26,10 @@ const TicTacToe = () => {
     return null;
   };
 
+  const isBoardFull = () => {
+    return board.every((square) => square != null);
+  };
+
   const winner = calculateWinner(board);
 
   const handleSquareClick = (index) => {
@@ -54,11 +58,17 @@ const TicTacToe = () => {
     );
   };
 
+  const isDraw = isBoardFull() && !winner;
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-4xl font-semibold mb-4">Tic Tac Toe</h1>
       <h2 className="text-xl mb-4">
-        {winner ? `Winner: ${winner}` : `Next Player: ${isXNext ? "X" : "O"}`}
+        {winner 
+        ? `Winner: ${winner}` 
+        : isDraw 
+        ? "It's a Draw!"
+        : `Next Player: ${isXNext ? "X" : "O"}`}
       </h2>
       <div className="grid grid-cols-3  gap-2 justify-center mb-4 ">
         {board.map((_, index) => renderSquare(index))}
