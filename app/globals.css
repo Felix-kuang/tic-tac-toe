@@ -19,3 +19,45 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Custom Keyframe Animations for X and O */
+@keyframes drawX {
+  0% {
+    stroke-dashoffset: 80;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes drawO {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Apply animation to .x and .o */
+.x, .o {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  font-weight: bold;
+  position: relative;
+}
+
+.x svg,
+.o svg {
+  position: absolute;
+}
+
+.x {
+  animation: drawX 0.5s ease-out forwards;
+}
+
+.o {
+  animation: drawO 0.5s ease-out forwards;
+}

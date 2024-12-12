@@ -51,9 +51,50 @@ const TicTacToe = () => {
       <button
         key={index}
         onClick={() => handleSquareClick(index)}
-        className="w-24 h-24 text-2xl font-bold my-1 bg-gray-200 hover:bg-gray-300 focus:outline-none "
+        className="w-24 h-24 m-1 bg-gray-200 hover:bg-gray-300 focus:outline-none flex justify-center items-center"
       >
-        {board[index]}
+        {board[index] && (
+          <div
+            className={`flex justify-center items-center w-full h-full ${
+              board[index] === "X" ? "x" : "o"
+            }`}
+          >
+            {board[index] === "X" ? (
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <line
+                  x1="0"
+                  y1="0"
+                  x2="40"
+                  y2="40"
+                  stroke="black"
+                  strokeWidth="5"
+                  strokeDasharray="80"
+                />
+                <line
+                  x1="40"
+                  y1="0"
+                  x2="0"
+                  y2="40"
+                  stroke="black"
+                  strokeWidth="5"
+                  strokeDasharray="80"
+                />
+              </svg>
+            ) : (
+              <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle
+                  cx="20"
+                  cy="20"
+                  r="15"
+                  stroke="black"
+                  strokeWidth="5"
+                  fill="none"
+                  strokeDasharray="100"
+                />
+              </svg>
+            )}
+          </div>
+        )}
       </button>
     );
   };
@@ -64,11 +105,11 @@ const TicTacToe = () => {
     <div className="flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-4xl font-semibold mb-4">Tic Tac Toe</h1>
       <h2 className="text-xl mb-4">
-        {winner 
-        ? `Winner: ${winner}` 
-        : isDraw 
-        ? "It's a Draw!"
-        : `Next Player: ${isXNext ? "X" : "O"}`}
+        {winner
+          ? `Winner: ${winner}`
+          : isDraw
+          ? "It's a Draw!"
+          : `Next Player: ${isXNext ? "X" : "O"}`}
       </h2>
       <div className="grid grid-cols-3  gap-2 justify-center mb-4 ">
         {board.map((_, index) => renderSquare(index))}
